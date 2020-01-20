@@ -20,6 +20,68 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <h1>Available</h1>
+    <div id="response">
+        API response here
+    </div>
+    <script>
+        fetch('api/available/1/2019-05-30/2019-06-05/2', {
+            headers: {
+                'x-csrf-token' : document.querySelector("meta[name='csrf-token']").getAttribute("content")
+            }
+        })
+        .then(function(response) {
+            response.json().then(function(data) {
+                var str = JSON.stringify(data);
+                document.getElementById('response').innerHTML = str;
+            });
+        })
+        .catch(function(err) {
+            console.log('Error: ' +  err);
+        });
+    </script>
+    <h1>All equipment</h1>
+    <div id="response2">
+        API response here
+    </div>
+    <script>
+        fetch('api/all', {
+            headers: {
+                'x-csrf-token' : document.querySelector("meta[name='csrf-token']").getAttribute("content")
+            }
+        })
+        .then(function(response) {
+            response.json().then(function(data) {
+                var str = JSON.stringify(data);
+                document.getElementById('response2').innerHTML = str;
+            });
+        })
+        .catch(function(err) {
+            console.log('Error: ' +  err);
+        });
+    </script>
+    <h1>Shortage</h1>
+    <div id="response3">
+        API response here
+    </div>
+    <script>
+        fetch('api/getShortages', {
+            headers: {
+                'x-csrf-token' : document.querySelector("meta[name='csrf-token']").getAttribute("content")
+            }
+        })
+        .then(function(response) {
+            response.json().then(function(data) {
+                var str = JSON.stringify(data);
+                document.getElementById('response3').innerHTML = str;
+            });
+        })
+        .catch(function(err) {
+            console.log('Error: ' +  err);
+        });
+    </script>
+    
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
