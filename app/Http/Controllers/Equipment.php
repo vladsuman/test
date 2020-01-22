@@ -20,9 +20,10 @@ class Equipment extends Controller {
         $results = DB::select('SELECT SUM(quantity)  Total, equipment.name, start, end, stock, stock - SUM(quantity) as shortage
                                 FROM testapi.planning
                                 join equipment on equipment.id = planning.equipment
-                                group by equipment.name, start, end, stock', 
+                                group by equipment.name, start, end, stock
+                                having shortage  < 0', 
                 []);
-        
+        /*
         $clean = array();
         
         foreach ($results as $res){
@@ -32,6 +33,8 @@ class Equipment extends Controller {
         }
         
         return response()->json([ $clean] , 200);
+        */
+        return response()->json([ $results] , 200);
     }
 
 }
